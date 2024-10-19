@@ -5,7 +5,7 @@ import AddClothing from './components/AddClothing';
 import OutfitRecommendation from './components/OutfitRecommendation';
 import Preferences from './components/Preferences';
 
-const App = () => {
+function App() {
   return (
     <Router>
       <div>
@@ -18,6 +18,6 @@ const App = () => {
       </div>
     </Router>
   );
-};
+}
 
 export default App;
