@@ -1,4 +1,4 @@
-// Displays all clothing items
+  // Display clothing items
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -8,9 +8,14 @@ const ClothesList = () => {
 
   useEffect(() => {
     const fetchClothes = async () => {
-      const response = await axios.get('/api/clothes');
-      setClothes(response.data);
+      try {
+        const response = await axios.get('/api/clothes');
+        setClothes(response.data);
+      } catch (error) {
+        console.error('Error fetching clothes:', error);
+      }
     };
+
     fetchClothes();
   }, []);
 
@@ -20,7 +25,7 @@ const ClothesList = () => {
       <ul>
         {clothes.map((item) => (
           <li key={item._id}>
-            <img src={item.imageUrl} alt={item.type} width="50" />
+            <img src={item.imageUrl} alt={item.type} width="100" />
             <p>{item.type} - {item.color}</p>
           </li>
         ))}
