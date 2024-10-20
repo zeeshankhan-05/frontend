@@ -10,9 +10,10 @@ const Preferences = () => {
   const handleSavePreferences = async () => {
     try {
       await axios.post('/api/preferences', { favoriteColors, preferredStyles });
-      alert('Preferences saved');
+      alert('Preferences saved successfully!');
     } catch (error) {
-      alert('Error saving preferences');
+      console.error('Error saving preferences:', error);
+      alert('Failed to save preferences.');
     }
   };
 
@@ -23,13 +24,13 @@ const Preferences = () => {
         type="text"
         value={favoriteColors}
         onChange={(e) => setFavoriteColors(e.target.value)}
-        placeholder="Favorite Colors (comma-separated)"
+        placeholder="Favorite Colors (e.g., Red, Blue)"
       />
       <input
         type="text"
         value={preferredStyles}
         onChange={(e) => setPreferredStyles(e.target.value)}
-        placeholder="Preferred Styles (comma-separated)"
+        placeholder="Preferred Styles (e.g., Casual, Formal)"
       />
       <button onClick={handleSavePreferences}>Save Preferences</button>
     </div>

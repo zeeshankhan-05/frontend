@@ -4,23 +4,28 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const OutfitRecommendation = () => {
-  const [outfits, setOutfits] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    const fetchOutfits = async () => {
-      const response = await axios.get('/api/recommendations');
-      setOutfits(response.data);
+    const fetchRecommendations = async () => {
+      try {
+        const response = await axios.get('/api/recommendations');
+        setRecommendations(response.data);
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+      }
     };
-    fetchOutfits();
+
+    fetchRecommendations();
   }, []);
 
   return (
     <div>
       <h2>Recommended Outfits</h2>
       <ul>
-        {outfits.map((outfit) => (
+        {recommendations.map((outfit) => (
           <li key={outfit._id}>
-            <img src={outfit.imageUrl} alt={outfit.type} width="50" />
+            <img src={outfit.imageUrl} alt={outfit.type} width="100" />
             <p>{outfit.type} - {outfit.color}</p>
           </li>
         ))}
