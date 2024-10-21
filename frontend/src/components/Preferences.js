@@ -32,7 +32,7 @@ const Preferences = () => {
         onChange={(e) => setPreferredStyles(e.target.value)}
         placeholder="Preferred Styles (e.g., Casual, Formal)"
       />
-      <button onClick={handleSavePreferences}>Save Preferences</button>
+      <button onClick={handleSavePreferences}>Preferences</button>
     </div>
   );
 };
